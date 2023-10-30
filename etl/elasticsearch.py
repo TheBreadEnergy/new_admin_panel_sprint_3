@@ -1,10 +1,12 @@
-from elasticsearch import Elasticsearch
+from datetime import datetime
+
 import backoff
-from elasticsearch.helpers import bulk, BulkIndexError
+from elasticsearch import Elasticsearch
+from elasticsearch.helpers import BulkIndexError, bulk
+
 from etl.config import ELASTICSEARCH_CONFIG, logger
 from etl.es_schema import MAPPING_MOVIES
 from etl.postgres import fetch_movie_data
-from datetime import datetime
 
 INDEX_NAME = 'movies'
 

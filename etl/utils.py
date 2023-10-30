@@ -1,5 +1,6 @@
+from etl.elasticsearch import (create_index, get_last_updated_time,
+                               write_to_elasticsearch)
 from etl.postgres import fetch_updated_movie_ids
-from etl.elasticsearch import create_index, write_to_elasticsearch, get_last_updated_time, update_last_updated_time
 
 
 def execute_etl():
@@ -8,5 +9,3 @@ def execute_etl():
 
     create_index()
     write_to_elasticsearch(movie_ids)
-
-

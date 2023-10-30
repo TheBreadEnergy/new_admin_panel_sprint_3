@@ -1,6 +1,6 @@
+import backoff
 import psycopg2
 from psycopg2.extras import DictCursor
-import backoff
 
 from etl.config import POSTGRES_CONFIG
 
