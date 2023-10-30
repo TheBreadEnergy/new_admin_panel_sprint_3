@@ -1,7 +1,8 @@
+from contextlib import closing
+
 import backoff
 import psycopg2
 from psycopg2.extras import DictCursor
-from contextlib import closing
 
 from etl.config import POSTGRES_CONFIG
 

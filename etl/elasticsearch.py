@@ -1,9 +1,11 @@
-from datetime import datetime
 import logging
+from contextlib import closing
+from datetime import datetime
+
 import backoff
 from elasticsearch import Elasticsearch
 from elasticsearch.helpers import BulkIndexError, bulk
-from contextlib import closing
+
 from etl.config import ELASTICSEARCH_CONFIG
 from etl.es_schema import MAPPING_MOVIES
 from etl.postgres import fetch_movie_data
