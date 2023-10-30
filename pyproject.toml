@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "new-admin-panel-sprint-3"
+version = "0.0.1"
+description = "From Postgres to ETL"
+authors = ["TheBreadEnergy <thebreadenergy@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+backoff = "^2.2.1"
+elasticsearch = "^8.10.1"
+flake8 = "^6.1.0"
+flake8-isort = "^6.1.0"
+poetry-plugin-sort = "^0.2.0"
+psycopg2 = "^2.9.9"
+python-dotenv = "^1.0.0"
+sqlalchemy = "^2.0.22"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

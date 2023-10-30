@@ -1,0 +1,58 @@
+version: "3.8"
+services:
+  es01:
+    image: elasticsearch:8.10.2
+    labels:
+      co.elastic.logs/module: elasticsearch
+    volumes:
+      - esdata01:/usr/share/elasticsearch/data
+    ports:
+      - 9200:9200
+      - 9300:9300
+    environment:
+      - node.name=es01
+      - cluster.name=es-cluster
+      - discovery.type=single-node
+      - bootstrap.memory_lock=true
+      - xpack.security.enabled=false
+    mem_limit: 1073741824
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    restart: always
+
+  kibana:
+    depends_on:
+      - es01
+    image: kibana:8.10.2
+    labels:
+      co.elastic.logs/module: kibana
+    volumes:
+      - kibanadata:/usr/share/kibana/data
+    ports:
+      - 5601:5601
+    environment:
+      - SERVERNAME=kibana
+      - ELASTICSEARCH_HOSTS=http://es01:9200
+      - ELASTICSEARCH_USERNAME=kibana_system
+    mem_limit: 1073741824
+    restart: always
+
+  postgres:
+    container_name: postgres
+    image: postgres:13.0
+    env_file:
+      - .env
+    volumes:
+      - postgres_volume:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+
+
+volumes:
+  esdata01:
+    driver: local
+  kibanadata:
+    driver: local
+  postgres_volume:
